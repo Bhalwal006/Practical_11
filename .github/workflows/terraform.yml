@@ -10,7 +10,7 @@ jobs:
   terraform:
     runs-on: ubuntu-latest
     permissions:
-      id-token: write            # required for OIDC
+      id-token: write
       contents: read
 
     steps:
@@ -35,6 +35,6 @@ jobs:
       - name: Terraform Plan
         run: terraform plan -out=tfplan
 
-      - name: Terraform Apply (for demo — normally gated)
+      - name: Terraform Apply
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
         run: terraform apply -auto-approve tfplan
